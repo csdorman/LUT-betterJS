@@ -5,38 +5,25 @@ document.getElementById("app").innerHTML = `
     </div>
 `;
 
-// Function declaration
-// This is Hoisted - sent to the top when it's run
-function sayHi() {
-    return console.log("Hello!")
-}
+//Destructuring
 
-// Function expression
-// Anonymous function (variable is named, but the function is not)
+// Assigning multiple values to variables in a single line
+const [a, b] = ["Hi.", "Colin"]
+console.log(a)
+console.log(b)
 /*
- If desired, these can be named by:
- const sayHi = function sayHi() {
-    return console.log("Hi.")
-}
+This is shorthand for:
+const newArray = ["Hi.", "Colin"]
+const a = newArray[0]
+const b = newArray[1]
  */
-// Not hoisted
-// These can be used in-place or passed around
+const newArray2 = ["Hi", "Colin", "newItem1", "newItem2"]
+// Assign first two items to variables, and do something else with the remainder
+const [c, d, ...e] = newArray2 //c = string, d = string, e = array
+console.log(c, d, e)
+console.log(newArray2)
 
-const sayHi1 = function() {
-    return console.log("Hi.")
-}
-// ES6+ Arrow functions (another way to write function expressions)
-// The sayHi1 function expression can be rewritten as:
-const sayHi2 = () => {
-    return console.log("Hey there.")
-}
-/* Arrow functions allow you omit curly brackets and "return":
-const sayHi2 = () => console.log("Hey there.")
+const sayHi = () => console.log("Hey there.")
 
-These can be easy to read within a callback function
-*/
-
-
+// Stopped at 6:30
 sayHi()
-sayHi1()
-sayHi2()
