@@ -32,8 +32,41 @@ const makePerson = (name, lastName, age, job) => {
 const dev = makePerson("john", "smith", 33, "developer")
 
 // While this is doable, it's a lot of work if you have 10s (or hundreds) of functions.
+/*
+By wrapping the makePerson parameters in curly brackets you get NAMED PARAMETERS
+This lets you use easily insert or replace Object parameters without worrying about the order.
+ */
 
-//Resume at 4:15
+const makePersonWParams = ({name, lastName, age, job}) => {
+    return {
+        name,
+        lastName,
+        age,
+        job
+    }
+}
+
+const firstNewPerson = {
+    name: "Steve",
+    age: 44,
+    lastName: "None",
+    job: "Busker"
+}
+
+/*
+You could also call the makePersonWParams function straight from the const
+ */
+const secondNewPerson = makePersonWParams({
+    lastName: "Smithens",
+    age: 7,
+    job: "dog",
+    name: "Ruffle"
+})
+
+console.log(makePersonWParams(firstNewPerson))
+console.log(secondNewPerson)
+// Both of these return objects with the arguments assigned to the correct parameters
+
 console.log(dev)
 
 
