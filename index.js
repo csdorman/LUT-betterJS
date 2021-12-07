@@ -9,7 +9,7 @@ Immutable and Pure Functions
 
 Immutable vs. Mutable
 - Can't be vs can be change
-- In general, you want to use things that can't (or won't) change the data
+- In general, you want to use things that can't (or won't) change the data - immutability is better than mutable
 
  */
 
@@ -19,42 +19,40 @@ Immutable vs. Mutable
 // name = name + " Smithers" //adding a last name
 // console.log(name) //Steve Smithers
 
-//Better
-// When the data content changes, the variable name *also* changes
+/*
+BETTER
+When the content changes, the variable name also changes.
+In general, you should NOT update variables that often - it usually makes more sense to create a NEW variable
+ */
+
 const name = "Steve"
 const fullName = name + " Smithers"
 console.log(name)
 
-// RESUME: 5:20
+/*
+PURE FUNCTIONS
+- A function that will ALWAYS return the same thing with the same inputs
+- Often times code will return different things within the same function based upon EXTERNAL variables - this is not ideal
+- This keeps state internal to the function
+- Functions should do ONE THING and do it the SAME EVERY TIME
+- PURE functions are much easier to test
+ */
 
-const BASE_SALARY = 16000
-const SALARY_MULTIPLIER = 4
+const addTwo = (x) => x + 2 //this is pure - it will always return the same thing
+console.log(addTwo(2))
+console.log(addTwo(2))
 
-// "ytd" would need a comment or other annotation to make sure its meaning is clear
-const ytd = 100000
-const salesYearToDate = 100000
+let multi = 3
+const addThree = (x) => x + multi // NOT Pure - uses an external variable that can change
+console.log(addThree(2))
+multi = 4
+console.log(addThree(2))
 
-const makePerson = ({firstName, lastName, age, job}) => {
-    return {
-        name: firstName + ' ' + lastName,
-        age,
-        job,
-        salary: BASE_SALARY * SALARY_MULTIPLIER,
-    }
+let mult = 2
+const addFour = (x) => { // Also an impure function
+    mult += 2  // This function modifies an external state - which will change what it outputs outside of the function
+    return x + mult
 }
-
-const dev = makePerson({
-    firstName: "Colin",
-    lastName: "Dorman",
-    age: 39,
-    job: "Musician",
-})
-
-const hireDev = ({ dev }) => {
-    const hiredDev = {
-        hired: true,
-        ...dev
-    }
-    return hiredDev
-}
-console.log(hireDev({dev}))
+console.log(addFour(2))
+console.log(addFour(2))
+console.log(addFour(2))
