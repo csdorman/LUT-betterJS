@@ -33,16 +33,29 @@ const checkout = cart => {
 */
 
 // Better
+/*
+Remember the functions should only have a SINGLE responsibility.
+While functions like "checkout" are necessary, make sure to breakout the smaller "subroutines" into their own function for simplicity and testing.
+ */
 const SHIPPING_COST = 10
 const getSubtotal = cart => cart.reduce((tempTotal, item) => tempTotal + item) // subtotal functionality goes here since it's it's own thing. Now you can test subTotal to make sure it works - simply pass an array of numbers.
 const getTotal = subTotal => subTotal + SHIPPING_COST // Add subTotal value and shipping. Also easily testable.
+const sendReceipt = ({email, total}) => fakeSendReceipt({
+    email,
+    total,
+})
+
 
 
 const checkout = cart => {
     const subTotal = getSubtotal(cart) //move subTotal functionality to own function, clear variable name
     const total = getTotal(subTotal) // move total functionality to its own function.
+    const orderSuccess = fakeAPICharge(total)
+    if (orderSuccess) {
+        sendReceipt({email: "fakeemail@gmail.com", total}) //move sendReceipt to its own function
+    }
+    return orderSuccess
 }
 
-// RESUME at 8:00
 
 checkout(cart)
