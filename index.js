@@ -1,10 +1,31 @@
 /*
-Interacting with the DOM
+JS & the DOM (Part 3)
  */
 
-const logo = document.getElementById("logo")
-logo.innerText = "Yo yo yo!"
+// Generate random color
+// RGB - 0-255 three numbers
+const generateColorValue = () => Math.floor(Math.random() * 256) // generate random number between 0 and 255
+// console.log(generateColorValue()) // Test
 
-const heading = document.createElement("h1")
-heading.innerHTML = "<span>Hello from inside the DOM!</span> " + document.URL
-document.body.appendChild(heading)
+const createColor = () => {
+    const red = generateColorValue()
+    const green = generateColorValue()
+    const blue = generateColorValue()
+    return `rgb(${red}, ${green}, ${blue})` //backticks let us use string interpolation/template strings - JS inside of strings
+}
+// console.log(createColor()) // Test
+
+// Apply to DOM element
+const applyColorToBody = color => {
+    return document.body.style.backgroundColor = color
+}
+
+// Add color to BG
+const addRandomColorToBg = () => {
+    const color = createColor()
+    return applyColorToBody(color)
+}
+
+//Console.log the color value and set BG color
+console.log(addRandomColorToBg())
+// Update color on event
