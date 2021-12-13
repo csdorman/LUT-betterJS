@@ -1,5 +1,5 @@
 /*
-JS & the DOM (Part 3)
+Events addListener vs. Event Methods
  */
 
 // Generate random color
@@ -28,4 +28,13 @@ const addRandomColorToBg = () => {
 
 //Console.log the color value and set BG color
 console.log(addRandomColorToBg())
-// Update color on event
+
+// Update color on click event
+const newColors = document.getElementById("new-colors")
+// On click lets you attach 1 event to a click. Multiple onclick events will overwrite the previous one.
+//newColors.onclick = () => addRandomColorToBg()
+
+// You could also do an event listener, which will run actions whenever an event happens
+// Event listeners let you add multiple actions to a single event
+newColors.addEventListener('click', addRandomColorToBg)
+newColors.addEventListener('click', () => console.log("I see you have found the button"))
