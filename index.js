@@ -38,3 +38,6 @@ const newColors = document.getElementById("new-colors")
 // Event listeners let you add multiple actions to a single event
 newColors.addEventListener('click', addRandomColorToBg)
 newColors.addEventListener('click', () => console.log("I see you have found the button"))
+newColors.addEventListener('dragstart', () => console.log("HELP ME!!"))
+newColors.addEventListener('dragend', () => console.log("I'm going back!"))
+document.addEventListener('transitionstart', () => alert("Is this color better?"))
