@@ -1,5 +1,5 @@
 /*
-Set Invertval vs. Set Timeout
+Set Interval vs. Set Timeout
  */
 
 // Generate random color
@@ -36,3 +36,14 @@ newColors.addEventListener('click', addRandomColorToBg)
 newColors.addEventListener('click', () => console.log("I see you have found the button"))
 newColors.addEventListener('dragstart', () => console.log("HELP ME!!"))
 newColors.addEventListener('dragend', () => console.log("I'm going back!"))
+
+// setTimeout - happens once
+// const log = () => console.log("Is in timeout")
+// setTimeout(log, 1000)
+//setTimeout(addRandomColorToBg, 5000)
+
+// setInterval happens repeatedly
+//setInterval(addRandomColorToBg, 2000)
+// In order to interrupt, you need to do this
+const interval = setInterval(addRandomColorToBg,2000)
+newColors.addEventListener("click", () => clearInterval(interval))
