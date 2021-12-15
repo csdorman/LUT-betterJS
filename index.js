@@ -1,49 +1,45 @@
 /*
-Set Interval vs. Set Timeout
+Promises
  */
 
-// Generate random color
-// RGB - 0-255 three numbers
-const generateColorValue = () => Math.floor(Math.random() * 256) // generate random number between 0 and 255
-// console.log(generateColorValue()) // Test
+// sample "import" from Stripe (charging a credit card)
 
-const createColor = () => {
-    const red = generateColorValue()
-    const green = generateColorValue()
-    const blue = generateColorValue()
-    return `rgb(${red}, ${green}, ${blue})` //backticks let us use string interpolation/template strings - JS inside of strings
-}
-// console.log(createColor()) // Test
+// Will return "null"
 
-// Apply to DOM element
-const applyColorToBody = color => {
-    return document.body.style.backgroundColor = color
-}
+// const chargeCard = () => null
 
-// Add color to BG
-const addRandomColorToBg = () => {
-    const color = createColor()
-    return applyColorToBody(color)
-}
 
-//Set BG color
-addRandomColorToBg()
+// JS doesn't always run top to bottom - in order to control the flow of some info you may need a LOT of callbacks
+// CALLBACK HELL!!!!!
+/*
+chargeCard('12341234123', (result) => {
+    // callback 1 - do something
+    saveToDb(result, () => {
+        //callback 2 - do something else
+    })
+})
+*/
 
-// Update color on click event
-const newColors = document.getElementById("new-colors")
+// In order to do some things (like fetch from an API) you want code that will run asynchronously.
+// You can either use callback functions (as above) or a PROMISE
+// A "promise" in JS is the same as a promise in real life - if someone promises you $10, they haven't given you money, but they have said that they will give you the money at a future date.
+// Many API calls return promises
 
-newColors.addEventListener('click', addRandomColorToBg)
-newColors.addEventListener('click', () => console.log("I see you have found the button"))
-newColors.addEventListener('dragstart', () => console.log("HELP ME!!"))
-newColors.addEventListener('dragend', () => console.log("I'm going back!"))
+const chargeCard = () => new Promise((resolve, reject)  => {
+    // card is valid
+    if (true) {
+        return resolve(true)
+    }
+    return resolve(false) // This isn't "rejecting", this is just resolving to false (IE credit card number was incorrect and the charge didn't go through
+    reject("FAIL FAIL")
+})
 
-// setTimeout - happens once
-// const log = () => console.log("Is in timeout")
-// setTimeout(log, 1000)
-//setTimeout(addRandomColorToBg, 5000)
+console.log(chargeCard())
 
-// setInterval happens repeatedly
-//setInterval(addRandomColorToBg, 2000)
-// In order to interrupt, you need to do this
-const interval = setInterval(addRandomColorToBg,2000)
-newColors.addEventListener("click", () => clearInterval(interval))
+// Once the promise returns data
+chargeCard().then((val) => {
+    console.log(val)
+}).catch((err) => { //.catch if the Promise fails
+    console.log(err)
+})
+
