@@ -37,6 +37,7 @@ const shoppingCart = [
 Using .map
 
 Iterates over an array and allows you to perform a function on each item. Returns a new array [IMPORTANT!]
+Will always return the same number of items in the away that were given.
  */
 
 // Apply a 25% discout to all items
@@ -58,6 +59,41 @@ const discountShoppingCart = shoppingCart.map((value) => {
         salePrice: value.price * .75
     }
 })
-
 console.log(shoppingCart)
 console.log(discountShoppingCart)
+
+/*
+ Using .filter
+
+ Iterates over an array, determines what passes through the filter, and returns a new array
+ This will return the same or fewer amount of items.
+ */
+
+// Group items that are $10 or less.
+const filteredSimpleCart = simpleShoppingCart.filter(value => {
+    return value <= 10
+})
+
+console.log(simpleShoppingCart)
+console.log(filteredSimpleCart)
+
+const filteredCart = shoppingCart.filter((product) => {
+    return product.type === "tutorial"
+})
+
+// You can also use destructuring:
+const filteredCartDestruct = shoppingCart.filter(({ type }) => {
+    return type === "tutorial"
+})
+
+// You can also combine filters.
+const filteredCartCombined = shoppingCart.filter((product) => {
+    return product.type === "tutorial"
+}).filter(product => {
+    return product.price > 20
+}) // You could also put a .map here (for a discount, for example)
+
+console.log(shoppingCart)
+console.log(filteredCart)
+console.log('w/Destructuring', filteredCartDestruct)
+console.log("Chained filters", filteredCartCombined)
