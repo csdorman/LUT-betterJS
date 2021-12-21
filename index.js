@@ -97,3 +97,15 @@ console.log(shoppingCart)
 console.log(filteredCart)
 console.log('w/Destructuring', filteredCartDestruct)
 console.log("Chained filters", filteredCartCombined)
+
+/*
+Using .reduce
+
+Iterates over an array and uses values to output a SINGLE value.
+ */
+
+const total = simpleShoppingCart.reduce((total, currentPrice) => {
+    return total + currentPrice
+})
+
+console.log(total)
