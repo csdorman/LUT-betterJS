@@ -109,3 +109,31 @@ const total = simpleShoppingCart.reduce((total, currentPrice) => {
 })
 
 console.log(total)
+
+/*
+Array.prototype.every
+
+Iterates over every item in an array and returns a SINGLE true or false value based on a test you provide.
+ */
+
+/*
+Array.prototype.some
+
+Lets you know if some (1 or more) items pass a test (that you provide)
+ */
+
+/*
+Array.prototype.forEach
+
+Executes a provided function for each array element. It DOES NOT return anything (unlike .map). It just executes something for each item in the array.
+ */
+
+/*
+Array.prototype.reverse
+
+The easiest way to reverse an array. But it IS destructive - it changes the original array. You can create a new array and reverse it to preserve the original array.
+ */
+
+console.log([...simpleShoppingCart].reverse()) // A reversed version of simpleShoppingCart
+console.log(simpleShoppingCart) // But the original is still there.
+
