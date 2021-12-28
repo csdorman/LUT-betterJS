@@ -1,20 +1,19 @@
+import SEARCH_URL from "./consts"; // Since this was the default export, you can change "SEARCH_URL" here and it won't break (as long as you rename it in the code below)
+import { SEARCH_QUERY } from "./consts"; // This name cannot be changed, since it is not a default export
+import { SAMPLE_EXPORT as SAMPLE} from "./consts"; // You can rename imports like this
 
 /*
-Async - IIFE
-
-IIFE = Immediately Invoked Function Expression
-    A function that basically calls itself.
+Import Export Modules
 */
 
-// IIFE format
-//(function(){
+console.log(SAMPLE)
 
-(async () => { // This one uses async to enable async within the function
+(async () => {
 
 // This is more readable than trying to do this all in one const
     try{
-        const SEARCH_QUERY = 'Javascript'
-        const SEARCH_URL = "https://openlibrary.org/search.json?q="
+
+
         const API_URL = `${SEARCH_URL}${SEARCH_QUERY}` // Using backticks for string concatenation
 
         const res = await fetch(API_URL)
