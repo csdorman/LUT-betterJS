@@ -1,32 +1,30 @@
 
 /*
-So Fetch
+Async - IIFE
 
-Fetch allows your program to visit an API URL and get some data.
-It comes with (most) browsers, so you don't have to have a separate API to use it.
-
-General Fetch syntax
-fetch(url).then((result) => {
-
-}).catch((error) => {
-
-})
-
-
+IIFE = Immediately Invoked Function Expression
+    A function that basically calls itself.
 */
 
-// This is more readable than trying to do this all in one const
-const SEARCH_QUERY = 'Javascript'
-const SEARCH_URL = "https://openlibrary.org/search.json?q="
-const API_URL = `${SEARCH_URL}${SEARCH_QUERY}` // Using backticks for string concatenation
+// IIFE format
+//(function(){
 
-fetch(API_URL)
-    .then((result) => {
-        return result.json()
-    })
-    .then(data => { // since result.json is a promise, it "becomes" the 'data' parameter
+(async () => { // This one uses async to enable async within the function
+
+// This is more readable than trying to do this all in one const
+    try{
+        const SEARCH_QUERY = 'Javascript'
+        const SEARCH_URL = "https://openlibrary.org/search.json?q="
+        const API_URL = `${SEARCH_URL}${SEARCH_QUERY}` // Using backticks for string concatenation
+
+        const res = await fetch(API_URL)
+        const data = await res.json()
+
         console.log(data)
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+    } catch (error) {
+        console.error(error.message)
+    }
+
+
+
+})() //this extra set of parens is IMPORTANT
